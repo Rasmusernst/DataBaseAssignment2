@@ -1,0 +1,82 @@
+﻿@*@model IEnumerable<Model.Genre>*@
+@using Model
+@model List<Model.Genre>
+
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Movie Genres</h2>
+
+
+<div class="col-md-12">
+    @using (Html.BeginForm("Search", "Genres"))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <p>Search for specific genre</p>
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <div class="col-md-6">
+                    @Html.TextBox("genreName", "Genre Name")
+                    <input type="submit" value="Search" class="btn btn-sm" />
+                </div>
+
+
+
+            </div>
+
+            <div class="form-group">
+
+            </div>
+        </div>
+    }
+</div>
+
+
+
+<div class="col-md-12">
+    <p>@Html.ActionLink("Create New Genre", "Create")</p>
+    <table class="table">
+        <tr>
+            <th>
+                Genres
+            </th>
+
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(item.Name, "Details", new { id = item.Id })
+
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    </table>
+
+</div>
+
+
+
+<hr />
+<div class="col-md-6">
+    <p>Here it is possible to Create, Read, Update and Delete Movie Genres. The purpose of the Movie Genres are to fulfill the following requirements:</p>
+    <p>Must contain a GUI. The GUI must have functionality to Create a new entity, Delete an entity, Update an entity</p>
+</div>
+
+<div class="col-md-6">
+    <p>It is also possible to search for a specific gerne. The purpose of search is to fulfill the following requirement:</p>
+    <p>The GUI must have functionality to Search for an entity</p>
+</div>
+

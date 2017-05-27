@@ -1,0 +1,40 @@
+﻿@model Model.Genre
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>@Html.DisplayFor(model => model.Name)</h2>
+
+<div>
+    <h4>Movies in @Html.DisplayFor(model => model.Name)</h4>
+    <hr />
+
+    <table class="table">
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+        </tr>
+
+        @foreach (var item in Model.Movie)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+            </tr>
+        }
+    </table>
+
+
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+<p>These movies are placeholder data, added in the DAL, when creating the Genre. The movies are stored as documents on each Genre.</p>
+<p>The purpose of the movies are to fulfill the following requirement:</p>
+<p>The entity shown in the GUI should be of a nature that would normally have required more than one table if a RDBMS had been used i.e. a customer and his orders.</p>
